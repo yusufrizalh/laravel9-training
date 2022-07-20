@@ -11,5 +11,3 @@
     </h1>
     <p>Nama saya adalah {{ $nama ?? 'Blank' }}</p>
 </x-master-layout>
-
-
