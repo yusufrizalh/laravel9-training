@@ -29,7 +29,11 @@ class Navbar extends Component
             'Contact' => '/contact',
             'About' => '/about',
             'Profile' => '/profile',
+            'Employees' => '/employees',
         ];
         return view('layouts.navbar', compact('navigations'));
     }
 }
+
+
+

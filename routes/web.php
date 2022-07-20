@@ -10,6 +10,9 @@ use App\Http\Controllers\ProfileInformationController;
 use App\Http\Controllers\EmployeeController;
 
 Route::get('/employees', [EmployeeController::class, 'index']);
+Route::get('/employees/create', [EmployeeController::class, 'create']);
+Route::post('/employees', [EmployeeController::class, 'store']);
+
 
 
 Route::get('/profile/{identifier}', [ProfileInformationController::class, '__invoke']);
