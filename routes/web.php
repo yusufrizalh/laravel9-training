@@ -8,7 +8,7 @@ use App\Http\Controllers\ContactController;
 
 use App\Http\Controllers\ProfileInformationController;
 
-Route::get('profile', [ProfileInformationController::class, '__invoke']);
+Route::get('profile/{identifier}', [ProfileInformationController::class, '__invoke']);
 
 
 Route::get('/contact', [ContactController::class, 'create']);

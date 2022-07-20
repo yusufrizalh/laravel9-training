@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 
 class ProfileInformationController extends Controller
 {
-    public function __invoke(Request $request)
+    public function __invoke(Request $request, $identifier)
     {
-        return view('profile', ['nama' => $request->nama]);
+        return view('profile', ['nama' => $identifier]);
     }
 }
