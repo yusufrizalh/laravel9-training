@@ -42,4 +42,10 @@ class EmployeeController extends Controller
         ]);
         return redirect('/employees');
     }
+
+    public function destroy($id)
+    {
+        DB::table('employees')->where('id', $id)->delete();
+        return back();
+    }
 }
