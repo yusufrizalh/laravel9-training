@@ -4,13 +4,15 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ContactController;
-
-
 use App\Http\Controllers\ProfileInformationController;
 
-Route::get('profile/{identifier}', [ProfileInformationController::class, '__invoke']);
+
+use App\Http\Controllers\EmployeeController;
+
+Route::get('/employees', [EmployeeController::class, 'index']);
 
 
+Route::get('/profile/{identifier}', [ProfileInformationController::class, '__invoke']);
 Route::get('/contact', [ContactController::class, 'create']);
 Route::post('/contact', [ContactController::class, 'store']);
 
