@@ -7,9 +7,12 @@
     <br>
     <ol>
         @foreach ($employees as $employee)
-            <li>{{ $employee->name }}</li>
+            <li>
+                {{ $employee->name }} |
+                <a href="/employees/{{ $employee->id }}/edit" style="color: green">
+                    edit
+                </a>
+            </li>
         @endforeach
     </ol>
 </x-master-layout>
-
-
