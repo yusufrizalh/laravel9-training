@@ -2,15 +2,18 @@
 
 namespace App\Http\Controllers;
 
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+
+use App\Models\Employee;
 
 class EmployeeController extends Controller
 {
     public function index()
     {
         return view('employees/index', [
-            'employees' => DB::table('employees')->orderBy('id', 'desc')->get(),
+            'employees' => Employee::orderBy('id', 'desc')->get(),
         ]);
     }
 
@@ -21,7 +24,7 @@ class EmployeeController extends Controller
 
     public function store(Request $request)
     {
-        DB::table('employees')->insert([
+        Employee::create([
             'name' => $request->name,
             'address' => $request->address,
         ]);
@@ -30,13 +33,18 @@ class EmployeeController extends Controller
 
     public function edit($id)
     {
-        $employee = DB::table('employees')->where('id', $id)->first();
+        // $employee = Employee::where('id', $id)->first();
+        $employee = Employee::find($id);
         return view('employees/edit', ['employee' => $employee]);
     }
 
     public function update(Request $request, $id)
     {
-        DB::table('employees')->where('id', $id)->update([
+        // Employee::where('id', $id)->update([
+        //     'name' => $request->name,
+        //     'address' => $request->address,
+        // ]);
+        Employee::find($id)->update([
             'name' => $request->name,
             'address' => $request->address,
         ]);
@@ -45,7 +53,8 @@ class EmployeeController extends Controller
 
     public function destroy($id)
     {
-        DB::table('employees')->where('id', $id)->delete();
+        // Employee::where('id', $id)->delete();
+        Employee::find($id)->delete();
         return back();
     }
 }
