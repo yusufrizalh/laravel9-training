@@ -10,7 +10,7 @@ return new class extends Migration
     {
         Schema::create('employees', function (Blueprint $table) {
             $table->id();                   // bigint, primary key, auto_increment
-            $table->string('name', 50);     // varchar(50)
+            $table->string('name', 191);     // varchar(191)
             $table->text('address');        // text
             $table->boolean('status')->default(false);  // true or false
             $table->timestamps();           // created_at, updated_at
