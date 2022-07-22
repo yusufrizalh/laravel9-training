@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
 {
     public function run()
     {
-        $users = [
+        $users = collect([
             [
                 'name' => 'Yusuf Rizal',
                 'email' => 'rizal@inixindo.co.id',
@@ -38,11 +38,9 @@ class DatabaseSeeder extends Seeder
                 'email_verified_at' => Carbon::now(),
                 'remember_token' => Str::random(12),
             ]
-        ];
-
-        foreach ($users as $user) {
+        ])->each(function ($user) {
             User::create($user);
-        }
+        });
 
         Employee::factory(10)->create();
     }
