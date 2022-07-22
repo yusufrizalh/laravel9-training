@@ -3,19 +3,13 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-
-
 use Illuminate\Database\Seeder;
+use App\Models\Employee;
 
-class DatabaseSeeder extends Seeder
+class EmployeesSeeder extends Seeder
 {
     public function run()
     {
-        $this->call([
-            UsersSeeder::class,
-            EmployeesSeeder::class,
-        ]);
+        Employee::factory(100)->create();
     }
 }
-
-
