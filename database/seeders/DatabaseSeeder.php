@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
 {
     public function run()
     {
-        $users = collect([
+        collect([
             [
                 'name' => 'Yusuf Rizal',
                 'email' => 'rizal@inixindo.co.id',
