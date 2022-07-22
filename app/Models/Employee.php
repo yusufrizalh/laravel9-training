@@ -10,5 +10,9 @@ class Employee extends Model
     use HasFactory;
 
     // menyetujui seluruh mass assignment
-    protected $guarded = [];
+    // protected $guarded = [];
+
+    // menyetujui mass assignment untuk menghindari kerentanan
+    // hanya bisa mengisi form dengan elemen name dan address
+    protected $fillable = ['name', 'address'];
 }
