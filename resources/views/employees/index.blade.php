@@ -1,23 +1,25 @@
 <x-master-layout title="Employees Lists">
-    <h1>Employees</h1>
-    <br>
-    <div>
-        <a href="/employees/create">Create New Employee</a>
+    <div class="container">
+        <div><a class="btn btn-primary btn-md mt-5" href="/employees/create">Create New Employee</a></div>
+        <div class="card mt-3">
+            <div class="card-header"><strong>Employees Lists</strong></div>
+            <div class="card-body">
+                <ol class="list-group">
+                    @foreach ($employees as $employee)
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            {{ $employee->name }}
+                            <div class="d-flex">
+                                <a href="/employees/{{ $employee->id }}/edit" class="btn btn-info">edit</a> &nbsp;
+                                <form action="/employees/{{ $employee->id }}" method="post" class="form form-inline">
+                                    @csrf
+                                    @method('delete')
+                                    <button type="submit" class="btn btn-danger">delete</button>
+                                </form>
+                            </div>
+                        </li>
+                    @endforeach
+                </ol>
+            </div>
+        </div>
     </div>
-    <br>
-    <ol>
-        @foreach ($employees as $employee)
-            <li>
-                {{ $employee->name }} |
-                <a href="/employees/{{ $employee->id }}/edit" style="color: green">
-                    edit
-                </a>
-                <form action="/employees/{{ $employee->id }}" method="post" style="display: inline">
-                    @csrf
-                    @method('delete')
-                    <button type="submit" style="color: crimson">delete</button>
-                </form>
-            </li>
-        @endforeach
-    </ol>
 </x-master-layout>
