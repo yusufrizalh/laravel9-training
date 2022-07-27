@@ -31,10 +31,8 @@ class EmployeeController extends Controller
         return redirect('/employees');
     }
 
-    public function edit($id)
+    public function edit(Employee $employee)
     {
-        // $employee = Employee::where('id', $id)->first();
-        $employee = Employee::find($id);
         return view('employees/edit', ['employee' => $employee]);
     }
 

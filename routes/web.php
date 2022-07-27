@@ -5,9 +5,11 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProfileInformationController;
-
-
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\UserController;
+
+Route::get('/users', [UserController::class, 'index']);
+Route::get('/users/{user:username}', [UserController::class, 'show'])->name('users.show');
 
 Route::resource('/employees', EmployeeController::class);
 
