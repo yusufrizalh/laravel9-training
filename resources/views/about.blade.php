@@ -1,5 +1,7 @@
 <x-master-layout title="About Page">
-    <h1>
-        Ini adalah Halaman About
-    </h1>
+    <div class="container">
+        <h1>
+            Ini adalah Halaman About
+        </h1>
+    </div>
 </x-master-layout>
