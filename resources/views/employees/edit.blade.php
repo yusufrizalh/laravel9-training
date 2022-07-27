@@ -3,7 +3,7 @@
         <div class="card">
             <div class="card-header"><strong>Edit Employee</strong></div>
             <div class="card-body">
-                <form action="/employees/{{ $employee->id }}" method="post" class="form">
+                <form action="{{ route('employees.update', $employee->id) }}" method="post" class="form">
                     @method('put')
                     @csrf
                     <div class="mb-3">

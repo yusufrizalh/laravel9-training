@@ -9,8 +9,10 @@
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             {{ $employee->name }}
                             <div class="d-flex">
-                                <a href="/employees/{{ $employee->id }}/edit" class="btn btn-info">edit</a> &nbsp;
-                                <form action="/employees/{{ $employee->id }}" method="post" class="form form-inline">
+                                <a href="{{ route('employees.edit', $employee->id) }}" class="btn btn-info">edit</a>
+                                &nbsp;
+                                <form action="{{ route('employees.destroy', $employee->id) }}" method="post"
+                                    class="form form-inline">
                                     @csrf
                                     @method('delete')
                                     <button type="submit" class="btn btn-danger">delete</button>
