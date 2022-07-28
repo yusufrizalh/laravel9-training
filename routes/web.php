@@ -8,6 +8,12 @@ use App\Http\Controllers\ProfileInformationController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\UserController;
 
+
+use App\Http\Controllers\RegisterController;
+
+Route::get('/register', [RegisterController::class, 'create'])->name('register');
+Route::post('/register', [RegisterController::class, 'store'])->name('register');
+
 Route::get('/users', [UserController::class, 'index']);
 Route::get('/users/{user:username}', [UserController::class, 'show'])->name('users.show');
 
