@@ -19,7 +19,10 @@ class EmployeeController extends Controller
 
     public function create()
     {
-        return view('employees/create');
+        return view('employees/create', [
+            'employee' => new Employee(),
+            'submit' => 'Create',
+        ]);
     }
 
     public function store(EmployeeRequest $request)
@@ -33,7 +36,10 @@ class EmployeeController extends Controller
 
     public function edit(Employee $employee)
     {
-        return view('employees/edit', ['employee' => $employee]);
+        return view('employees/edit', [
+            'employee' => $employee,
+            'submit' => 'Update',
+        ]);
     }
 
     public function update(EmployeeRequest $request, $id)
