@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-
+use App\Http\Requests\EmployeeRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -22,7 +22,7 @@ class EmployeeController extends Controller
         return view('employees/create');
     }
 
-    public function store(Request $request)
+    public function store(EmployeeRequest $request)
     {
         Employee::create([
             'name' => $request->name,
@@ -36,7 +36,7 @@ class EmployeeController extends Controller
         return view('employees/edit', ['employee' => $employee]);
     }
 
-    public function update(Request $request, $id)
+    public function update(EmployeeRequest $request, $id)
     {
         // Employee::where('id', $id)->update([
         //     'name' => $request->name,
