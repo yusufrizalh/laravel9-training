@@ -4,12 +4,12 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ContactController;
+
 use App\Http\Controllers\ProfileInformationController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\UserController;
-
-
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\DepartmentController;
 
 Route::get('/register', [RegisterController::class, 'create'])->name('register');
 Route::post('/register', [RegisterController::class, 'store'])->name('register');
@@ -18,6 +18,8 @@ Route::get('/users', [UserController::class, 'index']);
 Route::get('/users/{user:username}', [UserController::class, 'show'])->name('users.show');
 
 Route::resource('/employees', EmployeeController::class);
+
+Route::get('departments/{department:name}', [DepartmentController::class, 'show']);
 
 // Route::get('/employees', [EmployeeController::class, 'index']);
 // Route::get('/employees/create', [EmployeeController::class, 'create']);
