@@ -15,4 +15,9 @@ class Employee extends Model
     // menyetujui mass assignment untuk menghindari kerentanan
     // hanya bisa mengisi form dengan elemen name dan address
     protected $fillable = ['name', 'address'];
+
+    public function department()
+    {
+        return $this->belongsTo(Department::class);
+    }
 }

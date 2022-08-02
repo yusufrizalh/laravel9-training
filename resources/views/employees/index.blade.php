@@ -7,7 +7,7 @@
                 <ol class="list-group">
                     @foreach ($employees as $employee)
                         <li class="list-group-item d-flex justify-content-between align-items-center">
-                            {{ $employee->name }}
+                            {{ $employee->name }} &middot; {{ $employee->department->name }}
                             <div class="d-flex">
                                 <a href="{{ route('employees.edit', $employee->id) }}" class="btn btn-info">edit</a>
                                 &nbsp;
