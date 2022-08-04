@@ -11,17 +11,22 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\LogoutController;
 
-Route::get('/register', [RegisterController::class, 'create'])->name('register');
-Route::post('/register', [RegisterController::class, 'store'])->name('register');
+Route::middleware('guest')->group(function () {
+    Route::get('/register', [RegisterController::class, 'create'])->name('register');
+    Route::post('/register', [RegisterController::class, 'store'])->name('register');
+    Route::get('/login', [LoginController::class, 'create'])->name('login');
+    Route::post('/login', [LoginController::class, 'store'])->name('login');
+});
 
-Route::get('/login', [LoginController::class, 'create'])->name('login');
-Route::post('/login', [LoginController::class, 'store'])->name('login');
+Route::middleware('auth')->group(function () {
+    Route::resource('/employees', EmployeeController::class);
+    Route::post('/logout', LogoutController::class)->name('logout');
+});
 
 Route::get('/users', [UserController::class, 'index']);
 Route::get('/users/{user:username}', [UserController::class, 'show'])->name('users.show');
-
-Route::resource('/employees', EmployeeController::class);
 
 Route::get('departments/{department:name}', [DepartmentController::class, 'show']);
 
