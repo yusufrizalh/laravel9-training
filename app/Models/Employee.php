@@ -14,7 +14,7 @@ class Employee extends Model
 
     // menyetujui mass assignment untuk menghindari kerentanan
     // hanya bisa mengisi form dengan elemen name dan address
-    protected $fillable = ['name', 'address'];
+    protected $fillable = ['name', 'address', 'department_id'];
 
     public function department()
     {
