@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Requests\EmployeeRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Yajra\DataTables\Facades\DataTables;
-
 use App\Models\Employee;
+use Yajra\DataTables\Facades\DataTables;
+use Illuminate\Support\Facades\Gate;
 
 class EmployeeController extends Controller
 {
@@ -52,17 +52,25 @@ class EmployeeController extends Controller
 
     public function update(EmployeeRequest $request, $id)
     {
-        Employee::find($id)->update([
-            'name' => $request->name,
-            'address' => $request->address,
-        ]);
-        return redirect('/employees');
+        if (!Gate::allows(['isAdmin'])) {
+            abort(403);
+        } else {
+            Employee::find($id)->update([
+                'name' => $request->name,
+                'address' => $request->address,
+            ]);
+            return redirect('/employees');
+        }
     }
 
     public function destroy($id)
     {
-        Employee::find($id)->delete();
-        return back();
+        if (!Gate::allows('isManager')) {
+            abort(403);
+        } else {
+            Employee::find($id)->delete();
+            return back();
+        }
     }
 
     // membuka halaman employees dengan datatables
