@@ -32,7 +32,7 @@
                             {{ Auth::user()->email }}
                         </a>
                         <ul class="dropdown-menu dropdown-end">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="{{ route('employees.datatables') }}">Datatables</a></li>
                             <li><a class="dropdown-item" href="#">Another action</a></li>
                             <li>
                                 <hr class="dropdown-divider">

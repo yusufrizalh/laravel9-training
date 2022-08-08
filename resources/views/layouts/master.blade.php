@@ -8,6 +8,10 @@
     <title>{{ $title }} | Inixindo</title>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     {{ $styles }}
+
+    {{-- datatables --}}
+    <link href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css" rel="stylesheet">
 </head>
 
 <body>

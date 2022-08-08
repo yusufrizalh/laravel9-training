@@ -21,6 +21,8 @@ Route::middleware('guest')->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
+    Route::get('/employees/datatables', [EmployeeController::class, 'datatables'])->name('employees.datatables');
+    Route::get('/employees/datatables/list', [EmployeeController::class, 'getAllEmployees'])->name('employees.list');
     Route::resource('/employees', EmployeeController::class);
     Route::post('/logout', LogoutController::class)->name('logout');
 });
