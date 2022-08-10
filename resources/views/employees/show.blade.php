@@ -23,7 +23,7 @@
                                         <strong>Status: </strong>{{ $employee->status }}
                                         <strong>Skills: </strong>
                                         @foreach ($employee->skills as $skill)
-                                            <a href="/skills/{{ $skill->name }}"
+                                            <a href="#"
                                                 class="btn text-info align-items-center">{{ $skill->name }}</a>
                                         @endforeach
                                         <br> <br>

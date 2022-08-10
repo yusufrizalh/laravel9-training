@@ -12,6 +12,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
+use App\Http\Controllers\SkillController;
 
 Route::middleware('guest')->group(function () {
     Route::get('/register', [RegisterController::class, 'create'])->name('register');
@@ -30,6 +31,7 @@ Route::middleware('auth')->group(function () {
 Route::get('/users', [UserController::class, 'index']);
 Route::get('/users/{user:username}', [UserController::class, 'show'])->name('users.show');
 Route::get('departments/{department:name}', [DepartmentController::class, 'show']);
+Route::get('/skills/{skill:name}', [SkillController::class, 'show']);
 Route::get('/profile/{identifier}', [ProfileInformationController::class, '__invoke']);
 Route::get('/contact', [ContactController::class, 'create']);
 Route::post('/contact', [ContactController::class, 'store']);
