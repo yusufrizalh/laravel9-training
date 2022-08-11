@@ -9,7 +9,7 @@ class SkillController extends Controller
 {
     public function show(Skill $skill)
     {
-        $employees = $skill->employees()->latest()->get();
+        $employees = $skill->employees()->latest()->paginate(3);
         return view('employees/index', compact('employees', 'skill'));
     }
 }

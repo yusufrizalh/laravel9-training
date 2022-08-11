@@ -48,6 +48,9 @@
                         </ol>
                     </div>
                 </div>
+                <div class="my-5 d-flex justify-content-center">
+                    {{ $employees->links() }}
+                </div>
             </div>
         </div>
     </div>
