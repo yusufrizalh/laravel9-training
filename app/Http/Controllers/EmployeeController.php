@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\EmployeeRequest;
+use App\Models\Department;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Employee;
+use App\Models\Skill;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\Gate;
 
@@ -29,16 +31,18 @@ class EmployeeController extends Controller
     {
         return view('employees/create', [
             'employee' => new Employee(),
+            'departments' => Department::get(),
+            'skills' => Skill::get(),
             'submit' => 'Create',
         ]);
     }
 
     public function store(EmployeeRequest $request)
     {
-        Employee::create([
-            'name' => $request->name,
-            'address' => $request->address,
-        ]);
+        $attributes = $request->all();
+        $attributes['department_id'] = request('department');
+        $employee = Employee::create($attributes);
+        $employee->skills()->attach(request('skills'));
         return redirect('/employees');
     }
 
@@ -46,29 +50,32 @@ class EmployeeController extends Controller
     {
         return view('employees/edit', [
             'employee' => $employee,
+            'departments' => Department::get(),
+            'skills' => Skill::get(),
             'submit' => 'Update',
         ]);
     }
 
-    public function update(EmployeeRequest $request, $id)
+    public function update(Employee $employee, EmployeeRequest $request)
     {
         if (!Gate::allows(['isAdmin'])) {
             abort(403);
         } else {
-            Employee::find($id)->update([
-                'name' => $request->name,
-                'address' => $request->address,
-            ]);
+            $attributes = $request->all();
+            $attributes['department_id'] = request('department');
+            $employee->update($attributes);
+            $employee->skills()->sync(request('skills'));
             return redirect('/employees');
         }
     }
 
-    public function destroy($id)
+    public function destroy(Employee $employee)
     {
         if (!Gate::allows('isManager')) {
             abort(403);
         } else {
-            Employee::find($id)->delete();
+            $employee->skills()->detach();
+            $employee->delete();
             return back();
         }
     }

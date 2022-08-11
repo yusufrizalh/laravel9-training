@@ -30,13 +30,47 @@
                                         <div class="d-flex justify-content-start align-items-center">
                                             <a href="{{ route('employees.edit', $employee->id) }}"
                                                 class="btn btn-warning">edit</a>
-                                            &nbsp;
-                                            <form action="{{ route('employees.destroy', $employee->id) }}"
-                                                method="post" class="form form-inline">
-                                                @csrf
-                                                @method('delete')
-                                                <button type="submit" class="btn btn-danger">delete</button>
-                                            </form>
+                                            &nbsp;&nbsp;
+                                            <!-- Button trigger modal -->
+                                            <button type="button" class="btn btn-md btn-danger" data-bs-toggle="modal"
+                                                data-bs-target="#exampleModal">
+                                                delete
+                                            </button>
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="exampleModal" tabindex="-1"
+                                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Are you sure
+                                                                want to delete?</h5>
+                                                            <button type="button" class="btn-close"
+                                                                data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <div class="mb-3">
+                                                                <div>{{ $employee->name }}</div>
+                                                                <div class="text-secondary">
+                                                                    <small>Created on
+                                                                        {{ $employee->created_at->format('d M Y') }}</small>
+                                                                </div>
+                                                            </div>
+                                                            <form
+                                                                action="{{ route('employees.destroy', $employee->id) }}"
+                                                                method="post" class="form">
+                                                                @csrf
+                                                                @method('delete')
+                                                                <div class="d-flex">
+                                                                    <button type="submit"
+                                                                        class="btn btn-danger mx-3">Yes</button>
+                                                                    <button type="button" class="btn btn-secondary"
+                                                                        data-bs-dismiss="modal">Cancel</button>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="card-footer">

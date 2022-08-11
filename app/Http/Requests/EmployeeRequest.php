@@ -16,7 +16,8 @@ class EmployeeRequest extends FormRequest
         return [
             'name' => ['required', 'string', 'min:3', 'max:20'],
             'address' => ['required', 'string', 'min:4'],
+            'department' => ['required'],
+            'skills' => ['array', 'required'],
         ];
     }
 }
-
