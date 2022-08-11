@@ -30,7 +30,7 @@
 <div class="mb-4">
     <label for="skills" class="mb-1"><strong>Skill</strong></label>
     <select name="skills[]" id="skills" class="form-control @error('skills') is-invalid @enderror" multiple>
-        <option disabled selected>Choose one!</option>
+        <option disabled selected>Choose your skills!</option>
         @foreach ($employee->skills as $skill)
             <option selected value="{{ $skill->id }}">{{ $skill->name }}</option>
         @endforeach
