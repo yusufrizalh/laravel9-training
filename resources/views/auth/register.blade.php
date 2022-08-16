@@ -5,7 +5,7 @@
                 <div class="card">
                     <div class="card-header"><strong>Create New Account</strong></div>
                     <div class="card-body">
-                        <form action="{{ route('register') }}" method="post">
+                        <form action="{{ route('register') }}" method="post" autocomplete="off">
                             @csrf
                             <div class="mb-3">
                                 <label for="email" class="form-label mb-1"><strong>Email</strong></label>

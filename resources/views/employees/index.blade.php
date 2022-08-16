@@ -19,6 +19,11 @@
                                         <strong>{{ $employee->name }}</strong>
                                     </div>
                                     <div class="card-body">
+                                        @if ($employee->thumbnail)
+                                            <img src="{{ asset('storage/' . $employee->thumbnail) }}"
+                                                alt="Profile Image" class="card-img-top"
+                                                style="height: 270px; object-fit: cover; object-position: center">
+                                        @endif
                                         <strong>Address: </strong> {{ $employee->address }}
                                         <strong>Status: </strong>{{ $employee->status }}
                                         <strong>Skills: </strong>

@@ -10,6 +10,7 @@ use App\Models\Employee;
 use App\Models\Skill;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Storage;
 
 class EmployeeController extends Controller
 {
@@ -40,7 +41,10 @@ class EmployeeController extends Controller
     public function store(EmployeeRequest $request)
     {
         $attributes = $request->all();
+        // $imagepath = $request->file('thumbnail')->store('images/employees', 'public');
+        $imagepath = $request->file('thumbnail') ? $request->file('thumbnail')->store('images/employees', 'public') : null;
         $attributes['department_id'] = request('department');
+        $attributes['thumbnail'] = $imagepath;
         $employee = Employee::create($attributes);
         $employee->skills()->attach(request('skills'));
         return redirect('/employees');
@@ -61,8 +65,15 @@ class EmployeeController extends Controller
         if (!Gate::allows(['isAdmin'])) {
             abort(403);
         } else {
+            if (request()->file('thumbnail')) {
+                Storage::delete($employee->thumbnail);
+                $imagepath = $request->file('thumbnail')->store('images/employees', 'public');
+            } else {
+                $imagepath = $employee->thumbnail;
+            }
             $attributes = $request->all();
             $attributes['department_id'] = request('department');
+            $attributes['thumbnail'] = $imagepath;
             $employee->update($attributes);
             $employee->skills()->sync(request('skills'));
             return redirect('/employees');

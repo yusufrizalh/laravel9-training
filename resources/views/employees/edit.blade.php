@@ -8,7 +8,8 @@
                         Your form is invalid
                     </div>
                 @endif
-                <form action="{{ route('employees.update', $employee->id) }}" method="post" class="form">
+                <form action="{{ route('employees.update', $employee->id) }}" method="post" class="form"
+                    autocomplete="off" enctype="multipart/form-data">
                     @method('put')
                     @csrf
                     @include('employees/_form')

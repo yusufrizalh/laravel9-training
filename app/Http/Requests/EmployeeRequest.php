@@ -18,6 +18,7 @@ class EmployeeRequest extends FormRequest
             'address' => ['required', 'string', 'min:4'],
             'department' => ['required'],
             'skills' => ['array', 'required'],
+            'thumbnail' => ['image', 'mimes:jpeg,jpg,png,svg', 'max:2048']
         ];
     }
 }

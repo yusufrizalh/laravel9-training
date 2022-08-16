@@ -5,7 +5,7 @@
                 <div class="card">
                     <div class="card-header"><strong>Login Page</strong></div>
                     <div class="card-body">
-                        <form action="{{ route('login') }}" method="post">
+                        <form action="{{ route('login') }}" method="post" autocomplete="off">
                             @csrf
                             <div class="mb-3">
                                 <label for="email" class="form-label mb-1"><strong>Email</strong></label>

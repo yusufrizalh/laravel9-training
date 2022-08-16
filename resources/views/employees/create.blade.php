@@ -8,7 +8,8 @@
                         Your form is invalid
                     </div>
                 @endif
-                <form action="{{ route('employees.store') }}" method="post" class="form">
+                <form action="{{ route('employees.store') }}" method="post" class="form" autocomplete="off"
+                    enctype="multipart/form-data">
                     @csrf
                     @include('employees/_form')
                 </form>

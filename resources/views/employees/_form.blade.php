@@ -42,4 +42,14 @@
         <span class="invalid-feedback">{{ $message }}</span>
     @enderror
 </div>
+
+<div class="mb-4">
+    <label for="thumbnail" class="mb-1"><strong>Picture</strong></label>
+    <input type="file" name="thumbnail" class="form-control @error('thumbnail') is-invalid @enderror"
+        placeholder="Input thumbnail here" value="{{ old('thumbnail', $employee->thumbnail) }}" />
+    @error('thumbnail')
+        <span class="invalid-feedback">{{ $message }}</span>
+    @enderror
+</div>
+
 <button type="submit" class="btn btn-primary btn-md">{{ $submit }}</button>
